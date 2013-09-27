@@ -23,11 +23,13 @@ nav
   margin 6px 0 0 9px
 
 #app_wrap
-  top 50px
-  left 10px
-  bottom 0
-  right 10px
-  position fixed
+  min-width 1024px
+  max-width 1300px
+  position relative
+  height 800px
+  margin 0px auto
+  margin-top 50px
+
 
 #editor
   position absolute
@@ -45,6 +47,7 @@ nav
   position absolute
   margin-left: 5px;
   padding 20px
+  padding-top 0px
   left 50%
   bottom 10px
   right 10px
@@ -61,7 +64,6 @@ nav
 
 .shadowbox
   borderRadius(4px)
-  -webkit-box-shadow 0px 0px 80px rgba(0,0,0,0.30), inset 0 0 5px rgba(0,0,0,0.6)
   margin 0 auto
   
 .opacity_ten
@@ -93,16 +95,13 @@ nav
   width 18%
   
 #filename > span, #wordcounter
-  font-size: 16px
+  font-size: 30px
   font-style: normal
-  background: #F1EEEE
-  height: 30px;
-  line-height: 30px;
+  border-bottom: 1px solid
+  height: 40px;
+  line-height: 40px;
   padding: 0 6px;
   display inline-block
-  borderRadius(4px)
-  box-shadow: 1px 1px 20px #999
-  boxShadow(1px 1px 20px)
   boxSizing()
 
 #filename > span

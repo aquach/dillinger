@@ -28,7 +28,7 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')))
 
   // Setup local variables to be available in the views.
-  app.locals.title = "Online Markdown Editor - Dillinger, the Last Markdown Editor ever."
+  app.locals.title = "Whatsup Mark"
   app.locals.description = "Dillinger is an online cloud based HTML5 filled Markdown Editor."+
     "Sync with Dropbox, Github and Google Drive. 100% Open Source!"
   if (config.googleWebmasterMeta)

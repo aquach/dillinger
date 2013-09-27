@@ -306,7 +306,11 @@ $(function(){
         sanitize: false,
         smartLists: true,
         smartypants: false,
-        langPrefix: 'lang-'
+        highlight: function(code, lang) {
+          if (lang !== undefined)
+            return hljs.highlight(lang, code).value;
+          return code;
+        }
       })
       
       converter = marked
@@ -340,6 +344,13 @@ $(function(){
   function initAce(){
     
     editor = ace.edit("editor")
+    editor.setShowPrintMargin(false)
+    editor.renderer.setShowGutter(false)
+    editor.commands.removeCommands(["gotoline", "find"]) 
+    editor.commands.bindKeys({'ctrl-r': null}) 
+
+    $('.ace_editor .ace_sb').css('overflow-y', 'auto');
+    $('.ace_editor').css('font-size', '18px');
     
   } // end initAce
 
@@ -355,10 +366,7 @@ $(function(){
       $theme.find('li > a[data-value="'+profile.theme+'"]').addClass('selected')
       
       editor.getSession().setUseWrapMode(true)
-      editor.setShowPrintMargin(false)
-
       editor.getSession().setMode('ace/mode/markdown')
-      
       editor.getSession().setValue( profile.currentMd || editor.getSession().getValue())
       
       // Immediately populate the preview <div>

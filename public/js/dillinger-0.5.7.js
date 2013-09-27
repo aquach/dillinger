@@ -360,6 +360,9 @@ $(function(){
       editor.getSession().setMode('ace/mode/markdown')
       
       editor.getSession().setValue( profile.currentMd || editor.getSession().getValue())
+
+      console.log($('.ace_editor .ace_sb'));//.css('overflow-x', 'hidden');
+      alert('hi')
       
       // Immediately populate the preview <div>
       previewMd()
