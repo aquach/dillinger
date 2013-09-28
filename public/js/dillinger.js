@@ -882,7 +882,7 @@ $(function(){
 
     $("#save_dropbox")
       .on('click', function(){
-      profile.current_filename = profile.current_filename || '/Dillinger/' + generateRandomFilename('md')
+      profile.current_filename = profile.current_filename || '/ohhimark/' + generateRandomFilename('md')
 
       Dropbox.putMarkdownFile()
 
@@ -995,8 +995,9 @@ $(function(){
   function bindKeyboard(){
     // CMD+s TO SAVE DOC
     key('command+s, ctrl+s', function(e){
-     saveFile(true)
-     e.preventDefault() // so we don't save the webpage - native browser functionality
+      Dropbox.putMarkdownFile()
+      saveFile(true)
+      e.preventDefault() // so we don't save the webpage - native browser functionality
     })
     
     var saveCommand = {
@@ -1131,7 +1132,7 @@ $(function(){
         messages: {
           profileUpdated: "Profile updated"
           , profileCleared: "Profile cleared"
-          , docSavedLocal: "Document saved locally"
+          , docSavedLocal: "Document saved"
           , docSavedServer: "Document saved on our server"
           , docSavedDropbox: "Document saved on dropbox"
           , dropboxImportNeeded: "Please import a file from dropbox first."
@@ -1144,10 +1145,10 @@ $(function(){
             .text('')
             .stop()
             .text(msg)
-            .slideDown(250, function(){
+            .fadeIn(250, function(){
               _el
                 .delay(delay || 1000)
-                .slideUp(250)
+                .fadeOut(250)
             })
 
           } // end showMesssage

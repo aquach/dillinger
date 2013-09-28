@@ -4248,22 +4248,10 @@ nav {
 #notify {
   -webkit-user-select: none;
   -moz-user-select: none;
-  width: 160px;
+  width: 250px;
   margin: 0 auto;
-  background-color: #6c6;
-  background-repeat: repeat-x;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#cfc), to(#6c6));
-  background-image: -moz-linear-gradient(top, #cfc, #6c6);
-  background-image: -ms-linear-gradient(top, #cfc, #6c6);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cfc), color-stop(100%, #6c6));
-  background-image: -webkit-linear-gradient(top, #cfc, #6c6);
-  background-image: -o-linear-gradient(top, #cfc, #6c6);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #cfc), color-stop(1, #6c6));
-  background-image: -webkit-linear-gradient(top, #cfc 0%, #6c6 100%);
-  background-image: -moz-linear-gradient(top, #cfc 0%, #6c6 100%);
-  background-image: -ms-linear-gradient(top, #cfc 0%, #6c6 100%);
-  background-image: -o-linear-gradient(top, #cfc 0%, #6c6 100%);
-  background-image: linear-gradient(top, #cfc 0%, #6c6 100%);
+  margin-top: 10px;
+  background: #fff;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -4299,7 +4287,6 @@ nav {
   box-align: center;
   border: 1px solid rgba(0,0,0,0.098);
   color: #444;
-  font-weight: bold;
   height: auto;
   line-height: 1.5em;
   padding: 6px 8px;
