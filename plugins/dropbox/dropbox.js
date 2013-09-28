@@ -83,9 +83,8 @@ exports.Dropbox = (function() {
                   
       var pathToMdFile = req.body.mdFile
 
-      dboxclient.get(pathToMdFile, function(status, reply, metadata) {
-
-        return res.json({data: reply.toString()})
+      dboxclient.get(pathToMdFile, { root: 'auto' }, function(status, reply, metadata) {
+        return res.json({data: (reply || '').toString()})
 
       })
 
@@ -100,13 +99,15 @@ exports.Dropbox = (function() {
 
       var options = {
         file_limit         : 500,
-        include_deleted    : false
+        include_deleted    : false,
+        root: 'auto'
       }
 
-      dboxclient.search("/ohhimark/", ".md", options, function(status, reply) {
+      dboxclient.search("/", ".md", options, function(status, reply) {
         var regex = /.*\.md$/i
         	,	files = []
         	;
+
 
         if(status > 399 || !reply){
         	return cb(new Error('Bad response.'))
@@ -147,7 +148,7 @@ exports.Dropbox = (function() {
       var pathToMdFile = req.body.pathToMdFile || '/ohhimark/' + md.generateRandomMdFilename('md')
       var contents = req.body.fileContents || 'Test Data from Dillinger.'
 
-      dboxclient.put(pathToMdFile, contents, function(status, reply){
+      dboxclient.put(pathToMdFile, contents, { root: 'auto' }, function(status, reply){
         return res.json({data: reply})
       })
 
