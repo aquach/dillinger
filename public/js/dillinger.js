@@ -7,7 +7,7 @@ $(function(){
     , paperImgPath = '/img/notebook_paper_200x200.gif'
     , profile = 
       {
-        theme: 'ace/theme/idle_fingers'
+        theme: 'ace/theme/tomorrow'
       , showPaper: false
       , currentMd: ''
       , autosave: 
@@ -307,8 +307,11 @@ $(function(){
         smartLists: true,
         smartypants: false,
         highlight: function(code, lang) {
-          if (lang !== undefined)
-            return hljs.highlight(lang, code).value;
+          try {
+            if (lang !== undefined)
+              return hljs.highlight(lang, code).value;
+          } catch (e) {
+          }
           return code;
         }
       })

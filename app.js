@@ -28,7 +28,7 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')))
 
   // Setup local variables to be available in the views.
-  app.locals.title = "Ohhimark"
+  app.locals.title = "ohhimark"
   app.locals.description = ''
   if (config.googleWebmasterMeta)
     app.locals.googleWebmasterMeta = config.googleWebmasterMeta;
