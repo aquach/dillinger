@@ -7,7 +7,7 @@ $(function(){
     , paperImgPath = '/img/notebook_paper_200x200.gif'
     , profile = 
       {
-        theme: 'ace/theme/tomorrow'
+        theme: 'ace/theme/crimson_editor'
       , showPaper: false
       , currentMd: ''
       , autosave: 
@@ -19,7 +19,7 @@ $(function(){
       , current_filename : 'Untitled Document'
       , dropbox:
         {
-          filepath: '/Dillinger/'
+          filepath: '/ohhimark/'
         }
       }
 
@@ -379,7 +379,7 @@ $(function(){
     
     // Set/unset paper background image on preview
     // TODO: FIX THIS BUG
-    $preview.css('backgroundImage', profile.showPaper ? 'url("'+paperImgPath+'")' : 'url("")' )
+    $preview.css('backgroundImage', 'none');
     
     // Set text for dis/enable autosave / word counter
     $autosave.html( profile.autosave.enabled ? '<i class="icon-remove"></i>&nbsp;Disable Autosave' : '<i class="icon-ok"></i>&nbsp;Enable Autosave' )
