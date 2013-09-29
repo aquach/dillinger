@@ -1007,6 +1007,7 @@ $(function(){
                 win: "Ctrl-S"
               },
        exec: function(){ 
+         Dropbox.putMarkdownFile()
          saveFile(true) 
        }
     }
