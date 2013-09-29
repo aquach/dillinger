@@ -1557,7 +1557,7 @@ $(function(){
       var list = '<ul>'
       
       // Sort alpha
-      files.sort(_alphaNumSort)
+      files.sort(function(a, b) { return new Date(b.modified) - new Date(a.modified); });
 
       files.forEach(function(item){
         // var name = item.path.split('/').pop()
@@ -1654,7 +1654,6 @@ $(function(){
       searchDropbox: function(){
 
         function _beforeSendHandler(){
-          Notifier.showMessage('Searching for .md Files')
         }
 
         function _doneHandler(a, b, response){
@@ -1677,13 +1676,7 @@ $(function(){
 
           }
 
-          if(!resp.length){
-            Notifier.showMessage('No .md files found!')
-          }
-          else{
-            // console.dir(resp)
-            _listMdFiles(resp)
-          }
+          _listMdFiles(resp)
         } // end done handler
 
         function _failHandler(resp,err){
