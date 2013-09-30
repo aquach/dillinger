@@ -1152,9 +1152,9 @@ $(function(){
         messages: {
           profileUpdated: "Profile updated"
           , profileCleared: "Profile cleared"
-          , docSavedLocal: "Document saved locally"
-          , docSavedServer: "Document saved on our server"
-          , docSavedDropbox: "Document saved on dropbox"
+          , docSavedLocal: "Saved locally"
+          , docSavedServer: "Saved on our server"
+          , docSavedDropbox: "Saved on Dropbox"
           , dropboxImportNeeded: "Please import a file from dropbox first."
         },
         showMessage: function(msg,delay){
