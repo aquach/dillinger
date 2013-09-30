@@ -448,6 +448,8 @@ $(function(){
     if(profile.autosave.enabled){
       autoInterval = setInterval( function(){
         // firefox barfs if I don't pass in anon func to setTimeout.
+        Dropbox.putMarkdownFile(true)
+
         saveFile()
       }, profile.autosave.interval)
       
@@ -1778,7 +1780,8 @@ $(function(){
         path = _removeFilenameFromPath(path)
         updateUserProfile({dropbox: {filepath: path }})
       },
-      putMarkdownFile: function(){
+      putMarkdownFile: function(suppressAlerts){
+        suppressAlerts = suppressAlerts || false;
         
         function _doneHandler(a, b, response){
           a = b = null
@@ -1797,7 +1800,8 @@ $(function(){
             
             // console.dir(JSON.parse(response.data))
 
-            Notifier.showMessage( Notifier.messages.docSavedDropbox )
+            if (!suppressAlerts)
+              Notifier.showMessage( Notifier.messages.docSavedDropbox )
             
           } // end else
         } // end done handler
