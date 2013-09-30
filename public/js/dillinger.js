@@ -425,7 +425,7 @@ $(function(){
     
     updateUserProfile({currentMd: editor.getSession().getValue()})
     
-    isManual && Notifier.showMessage(Notifier.messages.docSavedLocal)
+    //isManual && Notifier.showMessage(Notifier.messages.docSavedLocal)
   
   }
   
@@ -999,7 +999,22 @@ $(function(){
       saveFile(true)
       e.preventDefault() // so we don't save the webpage - native browser functionality
     })
+
+    key('command+o, ctrl+o', function(e){
+      Dropbox.sesarchDropbox();
+      e.preventDefault() // so we don't save the webpage - native browser functionality
+    })
     
+    var openCommand = {
+       name: "open",
+       bindKey: {
+                mac: "Command-O",
+                win: "Ctrl-O"
+              },
+       exec: function(){ 
+        Dropbox.searchDropbox()
+       }
+    }
     var saveCommand = {
        name: "save",
        bindKey: {
@@ -1023,6 +1038,7 @@ $(function(){
       }
     }
 
+    editor.commands.addCommand(openCommand)
     editor.commands.addCommand(saveCommand)
     editor.commands.addCommand(fileForUrlNamer)
   }
@@ -1067,7 +1083,7 @@ $(function(){
         
         var dboxFilePath = $(this).parent('li').attr('data-file-path')
 
-        profile.current_filename = dboxFilePath.split('/').pop().replace('.md', '')
+        profile.current_filename = dboxFilePath
 
         Dropbox.setFilePath( dboxFilePath )
 
@@ -1133,7 +1149,7 @@ $(function(){
         messages: {
           profileUpdated: "Profile updated"
           , profileCleared: "Profile cleared"
-          , docSavedLocal: "Document saved"
+          , docSavedLocal: "Document saved locally"
           , docSavedServer: "Document saved on our server"
           , docSavedDropbox: "Document saved on dropbox"
           , dropboxImportNeeded: "Please import a file from dropbox first."
@@ -1146,10 +1162,10 @@ $(function(){
             .text('')
             .stop()
             .text(msg)
-            .fadeIn(250, function(){
+            .fadeIn(200, function(){
               _el
                 .delay(delay || 1000)
-                .fadeOut(250)
+                .fadeOut(200)
             })
 
           } // end showMesssage
@@ -1419,7 +1435,7 @@ $(function(){
             editor.getSession().setValue( response.data )
 
             // Update it in localStorage
-            var name = filename.split('/').pop()
+            var name = filename
             updateFilename(name)
             // Show it in the field
             setCurrentFilenameField(name)
@@ -1562,9 +1578,13 @@ $(function(){
 
       files.forEach(function(item){
         // var name = item.path.split('/').pop()
+        var name = item.path;
+        if (item.path[0] === '/') {
+          name = item.path.substr(1);
+        }
         list += '<li data-file-path="' 
               + item.path + '"><a class="dropbox_file" href="#">' 
-              + item.path + '</a></li>'
+              + name + '</a></li>'
       })
 
       list += '</ul>'

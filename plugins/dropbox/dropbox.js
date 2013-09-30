@@ -103,34 +103,26 @@ exports.Dropbox = (function() {
         root: 'auto'
       }
 
-      dboxclient.search("/", ".md", options, function(status, reply) {
-        var regex = /.*\.md$/i
-        	,	files = []
-        	;
-
-
-        if(status > 399 || !reply){
-        	return cb(new Error('Bad response.'))
-        }
-
-        reply.forEach(function(item){
-          if(regex.test(item.path)) {
-            files.push(item)
+      var search = function(patterns) {
+        var pattern = patterns.pop();
+        dboxclient.search("/", pattern, options, function(status, reply) {
+          if(status > 399 || !reply){
+            return cb(new Error('Bad response.'))
           }
-        })
 
-        dboxclient.search("/", ".mdown", options, function(status, reply) {
           files = files.concat(reply)
 
-          dboxclient.search("/", ".markdown", options, function(status, reply) {
-            files = files.concat(reply)
-            return cb(status, files)
-          })
+          if (patterns.length === 0) {
+            cb(files);
+            return;
+          }
 
-        })
+          search(patterns);
+        }
+      };
 
-      })
-        
+      search(['.md', '.txt', '.mdown', '.markdown']);
+
     },
     saveToDropbox: function(req, res){
 
