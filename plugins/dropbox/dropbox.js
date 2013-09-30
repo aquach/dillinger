@@ -115,7 +115,7 @@ exports.Dropbox = (function() {
           files = files.concat(reply)
 
           if (patterns.length === 0) {
-            cb(files);
+            cb(status, files);
             return;
           }
 
