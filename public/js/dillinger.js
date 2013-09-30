@@ -379,6 +379,12 @@ $(function(){
       previewMd()
       
     })
+
+    $(window).resize(function() {
+      var paneHeight = $(window).height() - 25;
+      $('#app_wrap').css('height', paneHeight);
+    });
+    $(window).resize();
     
     // Set/unset paper background image on preview
     // TODO: FIX THIS BUG

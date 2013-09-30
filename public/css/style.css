@@ -3944,9 +3944,9 @@ nav {
   min-width: 1024px;
   max-width: 1300px;
   position: relative;
-  height: 800px;
+  height: 850px;
   margin: 0px auto;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 #editor {
   position: absolute;
