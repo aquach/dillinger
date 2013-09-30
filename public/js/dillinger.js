@@ -240,9 +240,10 @@ $(function(){
    * @return {String} 
    */
   function setCurrentFilenameField(str){
-    if (str[0] === '/')
-      str = str.substr(1);
-    $('#filename > span[contenteditable="true"]').text( str || profile.current_filename || "Untitled Document")
+    var text = str || profile.current_filename || "Untitled Document";
+    if (text[0] === '/')
+      text = text.substr(1);
+    $('#filename > span[contenteditable="true"]').text(text);
   }
 
   /**
