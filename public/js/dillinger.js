@@ -13,7 +13,7 @@ $(function(){
       , autosave: 
         {
           enabled: true
-        , interval: 3000 // might be too aggressive; don't want to block UI for large saves.
+        , interval: 10000 // might be too aggressive; don't want to block UI for large saves.
         }
       , wordcount: true
       , current_filename : 'Untitled Document'
@@ -1813,6 +1813,12 @@ $(function(){
         var md = encodeURIComponent( editor.getSession().getValue() )
         
         var postData = 'pathToMdFile=' + profile.dropbox.filepath + encodeURIComponent(profile.current_filename) + '&fileContents=' + md
+
+        if (postData === Dropbox.lastPostData) {
+          return;
+        } else {
+          Dropbox.lastPostData = postData;
+        }
         
         var config = {
                         type: 'POST',
