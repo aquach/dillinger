@@ -106,11 +106,13 @@ exports.Dropbox = (function() {
       var search = function(patterns) {
         var pattern = patterns.pop();
         dboxclient.search("/", pattern, options, function(status, reply) {
+          console.log('searching', pattern);
           if(status > 399 || !reply){
             return cb(new Error('Bad response.'))
           }
 
           files = files.concat(reply)
+          console.log(files)
 
           if (patterns.length === 0) {
             cb(files);

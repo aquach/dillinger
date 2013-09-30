@@ -1799,7 +1799,7 @@ $(function(){
 
         var md = encodeURIComponent( editor.getSession().getValue() )
         
-        var postData = 'pathToMdFile=' + profile.dropbox.filepath + encodeURIComponent(profile.current_filename) + '.md' + '&fileContents=' + md
+        var postData = 'pathToMdFile=' + profile.dropbox.filepath + encodeURIComponent(profile.current_filename) + '&fileContents=' + md
         
         var config = {
                         type: 'POST',
