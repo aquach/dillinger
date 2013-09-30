@@ -103,6 +103,8 @@ exports.Dropbox = (function() {
         root: 'auto'
       }
 
+      var files = [];
+
       var search = function(patterns) {
         var pattern = patterns.pop();
         dboxclient.search("/", pattern, options, function(status, reply) {
