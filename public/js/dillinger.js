@@ -1812,7 +1812,7 @@ $(function(){
 
         var md = encodeURIComponent( editor.getSession().getValue() )
         
-        var postData = 'pathToMdFile=' + profile.dropbox.filepath + encodeURIComponent(profile.current_filename) + '&fileContents=' + md
+        var postData = 'pathToMdFile=' + encodeURIComponent(profile.current_filename) + '&fileContents=' + md
 
         if (postData === Dropbox.lastPostData) {
           return;
