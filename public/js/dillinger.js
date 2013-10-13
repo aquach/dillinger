@@ -21,6 +21,7 @@ $(function(){
         {
           filepath: '/ohhimark/'
         }
+      , dirty: false
       }
 
   // Feature detect ish
@@ -448,9 +449,12 @@ $(function(){
     if(profile.autosave.enabled){
       autoInterval = setInterval( function(){
         // firefox barfs if I don't pass in anon func to setTimeout.
-        Dropbox.putMarkdownFile(true)
 
-        saveFile()
+        if (profile.dirty) { 
+          profile.dirty = false;
+          Dropbox.putMarkdownFile(true)
+          saveFile()
+        }
       }, profile.autosave.interval)
       
     }
@@ -547,6 +551,8 @@ $(function(){
     $preview
       .html('') // unnecessary?
       .html(md)
+
+    profile.dirty = true;
 
     refreshWordCount();
   }
