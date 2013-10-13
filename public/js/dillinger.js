@@ -338,6 +338,9 @@ $(function(){
 
       initWordCount();
       refreshWordCount();
+
+      if (profile.current_filename)
+        Dropbox.fetchMarkdownFile(profile.current_filename)
       
     }
 
